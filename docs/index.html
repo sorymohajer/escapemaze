@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Maze - Password Recovery</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #667eea;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .message {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .button {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #5a6fd8;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .steps {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .steps li {
+            margin: 10px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎮</div>
+        <h1>Escape Maze</h1>
+        <h2>إعادة تعيين كلمة المرور</h2>
+        
+        <div class="message">
+            <p>مرحباً! هذه الصفحة مخصصة لإعادة تعيين كلمة المرور لتطبيق Escape Maze.</p>
+        </div>
+
+        <div class="info">
+            <h3>كيفية إعادة تعيين كلمة المرور:</h3>
+            <ol class="steps">
+                <li>تأكد من تثبيت تطبيق Escape Maze على جهازك</li>
+                <li>اضغط على رابط إعادة التعيين في البريد الإلكتروني</li>
+                <li>سيتم فتح التطبيق تلقائياً</li>
+                <li>أدخل كلمة المرور الجديدة</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <p style="color: #888; font-size: 14px;">
+                إذا لم يتم فتح التطبيق تلقائياً، تأكد من تثبيته أولاً من متجر التطبيقات
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Handle password reset deep link
+        function handlePasswordReset() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fragment = window.location.hash.substring(1);
+            
+            if (fragment) {
+                // Try to open the app with deep link
+                const deepLink = `com.escape.maze2d://reset-password#${fragment}`;
+                window.location.href = deepLink;
+                
+                // Fallback: show instructions if app doesn't open
+                setTimeout(() => {
+                    document.querySelector('.message').innerHTML = `
+                        <p style="color: #e74c3c;">لم يتم فتح التطبيق تلقائياً.</p>
+                        <p>يرجى التأكد من تثبيت تطبيق Escape Maze أولاً.</p>
+                    `;
+                }, 3000);
+            }
+        }
+
+        // Check if this is a password reset link
+        if (window.location.pathname.includes('reset-password') || window.location.hash) {
+            handlePasswordReset();
+        }
+    </script>
+</body>
+</html>
