@@ -1,2 +1,18 @@
+title: Escape Maze
+description: Password Recovery and Deep Links
+baseurl: "/escapemaze"
+url: "https://sorymohajer.github.io"
+
+# GitHub Pages settings
+plugins:
+  - jekyll-sitemap
+
+# Include .well-known directory
 include:
-  - ".well-known"
+  - .well-known
+
+# Exclude unnecessary files
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
